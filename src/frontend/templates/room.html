@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Room: {{roomnum}}{% endblock %}
+
+{% block head %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/lib/jquery.slim.min.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='scss/compiled/room.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/cookie.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/lib/socket.io.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/cookie.js') }}"></script>
+
+<script type="text/javascript">
+  const socket = io.connect();
+  const roomnum = "{{roomnum}}";
+  const username = getCookie("username", "Aditya")
+  var id = "M7lc1UVf-VE";
+
+  socket.emit('join room', roomnum, username)
+
+</script>
+{% endblock %}
+
+{% block page %}
+<div class="content">
+  <div class="item roomtitle">
+    <h1>Room: {{roomnum}}</h1>
+  </div>
+  <div class="item player-container">
+    <div class="player" id="player">
+      <div class="outline" id="ytplayer"></div>
+    </div>
+  </div>
+
+  <div class="item buttons-container">
+    <div class="player-url">
+      <input type="text" id="inputVideoId" name="" value="" placeholder="Video ID/URL">
+      <button onclick="changeVideo()">Change</button>
+    </div>
+    <button onclick="playVideo()">Play/Pause</button>
+    <button onclick="syncVideo()">Sync</button>
+    <button onclick="changeVideo()">Change</button>
+    <button onclick="changeVideo('fcRRGHYpK_g')">Jurnal Risa</button>
+  </div>
+  <div class="item outline onlineusers-container">
+    <div class="onlineusers">
+      <h1 class="box-title">Online Users</h1>
+      <span class="usercounter" id="usercounter">(0)</span>
+      <div class="users" id="users"></div>
+    </div>
+  </div>
+
+  <div class="item outline temp"></div>
+
+</div>
+{% endblock %}
+
+{% block footerjs %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/sync.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/online.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/control.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/player.js') }}"></script>
+
+{% endblock %}
