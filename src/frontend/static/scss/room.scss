@@ -44,8 +44,7 @@
   grid-area: player;
   position : relative;
   height   : 0;
-  // padding  : 56.25% 0 0;
-  padding  : 0 0 0;
+  padding  : 56.25% 0 0;
   /* max-height: 100%; */
   > .player {
     position        : absolute;
@@ -65,6 +64,45 @@
       outline-color: #ffffff;
       transition   : .5s;
     }
+  }
+}
+
+.chat-container {
+  grid-area       : chat;
+  /* height: 100%; */
+  background-color: #f9f9f9;
+  outline-color   : #f0f0f0;
+  z-index         : 999;
+
+  > .chat {
+    height: 100%;
+    /* width: 100%; */
+    > form > input {
+      border          : none;
+      background-color: #ececec;
+      width           : calc(100% - 1em);
+      height          : 2.5em;
+      padding         : .2em .5em 0;
+    }
+
+    > .messages {
+      height          : calc(100% - 49.6px - 2.5em);
+      overflow-y      : scroll;
+      background-color: #f9f9f9;
+
+      > .message {
+        display         : block;
+        padding         : .6em;
+        margin          : .3em;
+        background-color: #ececec;
+
+        > .timestamp {
+          float: right;
+          color: #787878;
+        }
+      }
+    }
+
   }
 }
 
